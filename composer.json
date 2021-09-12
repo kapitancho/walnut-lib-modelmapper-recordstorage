@@ -1,0 +1,47 @@
+{
+    "name": "walnut/lib_modelmapper_recordstorage",
+    "authors": [
+        {
+            "name": "Marian Kostadinov",
+            "email": "manchokapitancho@gmail.com"
+        }
+    ],
+	"autoload": {
+		"psr-4": {
+			"Walnut\\Lib\\ModelMapper\\RecordStorage\\": "src/"
+		}
+	},
+	"repositories": [
+		{
+			"url": "https://github.com/kapitancho/walnut-lib-identitygenerator.git",
+			"type": "git"
+		},
+		{
+			"url": "https://github.com/kapitancho/walnut-lib-jsonserializer.git",
+			"type": "git"
+		},
+		{
+			"url": "https://github.com/kapitancho/walnut-lib-fileaccessor.git",
+			"type": "git"
+		},
+		{
+			"url": "https://github.com/kapitancho/walnut-lib-modelmapper.git",
+			"type": "git"
+		},
+		{
+			"url": "https://github.com/kapitancho/walnut-lib-recordstorage.git",
+			"type": "git"
+		}
+	],
+	"require": {
+		"walnut/lib_identitygenerator": "dev-main",
+		"walnut/lib_jsonserializer": "dev-main",
+		"walnut/lib_fileaccessor": "dev-main",
+		"walnut/lib_modelmapper": "dev-main",
+		"walnut/lib_recordstorage": "dev-main"
+	},
+	"require-dev": {
+		"vimeo/psalm": "^4.9.3",
+		"phpunit/phpunit": "^9.5.9"
+	}
+}
