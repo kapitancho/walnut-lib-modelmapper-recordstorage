@@ -110,18 +110,18 @@ $mapper->all(); //0 entries
 $mapper->store($firstClient->id, $firstClient);
 $mapper->store($secondClient->id, $secondClient);
 
-$mapper->all()); //2 entries
+$mapper->all(); //2 entries
 
 $updatedSecondClient = new Client('cl-2', 'Client 2 new name');
 
 $mapper->store($updatedSecondClient->id, $updatedSecondClient);
-$mapper->all()); //2 entries
+$mapper->all(); //2 entries
 
 $mapper->byId($firstClient->id)->name; //Client 1
 $mapper->byId($updatedSecondClient->id)->name; //Client 2 new name
 
 $mapper->remove($firstClient->id);
-$mapper->byId($firstClient->id)); //null
+$mapper->byId($firstClient->id); //null
 
 $mapper->all(); //1 entry
 
