@@ -12,8 +12,8 @@
 		}
 	},
 	"require": {
-		"walnut/lib_identitygenerator": "dev-main",
-		"walnut/lib_modelmapper": "dev-main",
+		"walnut/lib_identitygenerator": "^0.0.1",
+		"walnut/lib_modelmapper": "^0.0.1",
 		"walnut/lib_recordstorage": "^0.0.1"
 	},
 	"require-dev": {
