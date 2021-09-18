@@ -2,12 +2,15 @@
 
 namespace Walnut\Lib\ModelMapper\RecordStorage;
 
+use Walnut\Lib\IdentityGenerator\IdentityGenerator;
+use Walnut\Lib\ModelMapper\MappingNotAvailable;
 use Walnut\Lib\ModelMapper\ModelBuilderFactory;
+use Walnut\Lib\ModelMapper\ModelIdentityGeneratorFactory;
 use Walnut\Lib\ModelMapper\ModelMapperFactory;
 use Walnut\Lib\ModelMapper\ModelParserFactory;
 use Walnut\Lib\RecordStorage\ArrayDataAccessor\ArrayDataAccessorFactory;
 
-final class RecordStorageModelMapperFactory implements ModelMapperFactory {
+final class RecordStorageModelMapperFactory implements ModelMapperFactory, ModelIdentityGeneratorFactory {
 	/**
 	 * @param RecordStorageModelMapperConfiguration $configuration
 	 * @param ArrayDataAccessorFactory $accessorFactory
@@ -25,8 +28,9 @@ final class RecordStorageModelMapperFactory implements ModelMapperFactory {
 	 * @template T of object
 	 * @param class-string<T> $className
 	 * @return RecordStorageModelMapper<T>
+	 * @throw MappingNotAvailable
 	 */
-	public function getMapper(string $className): RecordStorageModelMapper {
+	private function load(string $className): RecordStorageModelMapper {
 		return new RecordStorageModelMapper(
 			$this->accessorFactory->accessor(
 				$this->configuration->storageKeyOf($className)
@@ -36,4 +40,22 @@ final class RecordStorageModelMapperFactory implements ModelMapperFactory {
 		);
 	}
 
+	/**
+	 * @template T of object
+	 * @param class-string<T> $className
+	 * @return RecordStorageModelMapper<T>
+	 * @throw MappingNotAvailable
+	 */
+	public function getMapper(string $className): RecordStorageModelMapper {
+		return $this->load($className);
+	}
+
+	/**
+	 * @param class-string $className
+	 * @return IdentityGenerator
+	 * @throw MappingNotAvailable
+	 */
+	public function getIdentityGenerator(string $className): IdentityGenerator {
+		return $this->load($className);
+	}
 }

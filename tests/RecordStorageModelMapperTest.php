@@ -62,6 +62,8 @@ final class RecordStorageModelMapperTest extends TestCase {
 				}
 			}
 		));
+		$this->assertGreaterThan(0,
+			$this->getFactory()->getIdentityGenerator(MockModel::class)->generateId());
 	}
 
 	public function testMapperStore(): void {
