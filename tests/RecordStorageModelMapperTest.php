@@ -1,7 +1,6 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use Walnut\Lib\ModelMapper\ConditionChecker;
 use Walnut\Lib\ModelMapper\RecordStorage\RecordStorageModelMapperConfiguration;
 use Walnut\Lib\ModelMapper\RecordStorage\RecordStorageModelMapperFactory;
 use Walnut\Lib\RecordStorage\ArrayDataAccessor\ArrayDataAccessorFactory;
@@ -56,11 +55,8 @@ final class RecordStorageModelMapperTest extends TestCase {
 		$this->assertCount(2,  $mapper->all());
 		$this->assertEquals(1,  $mapper->generateId());
 		$this->assertCount(1,  $mapper->byCondition(
-			new class implements ConditionChecker {
-				public function checkCondition(object $target): bool {
-					return $target->id === RecordStorageModelMapperTest::KEY1;
-				}
-			}
+			fn(object $target): bool =>
+				$target->id === RecordStorageModelMapperTest::KEY1
 		));
 		$this->assertGreaterThan(0,
 			$this->getFactory()->getIdentityGenerator(MockModel::class)->generateId());

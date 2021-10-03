@@ -3,7 +3,6 @@
 namespace Walnut\Lib\ModelMapper\RecordStorage;
 
 use Walnut\Lib\IdentityGenerator\IdentityGenerator;
-use Walnut\Lib\ModelMapper\ConditionChecker;
 use Walnut\Lib\ModelMapper\ModelBuilder;
 use Walnut\Lib\ModelMapper\ModelMapper;
 use Walnut\Lib\ModelMapper\ModelParser;
@@ -68,17 +67,17 @@ final class RecordStorageModelMapper implements ModelMapper, IdentityGenerator {
 	}
 
 	/**
-	 * @param ConditionChecker<T> $conditionChecker
+	 * @param callable(T): bool $conditionChecker
 	 * @return T[]
 	 */
-	public function byCondition(ConditionChecker $conditionChecker): array {
+	public function byCondition(callable $conditionChecker): array {
 		return array_values(
 			array_filter(
 				$this->all(),
 				/**
 			      * @param T $item
 			      */
-				static fn(object $item) => $conditionChecker->checkCondition($item)
+				static fn(object $item) => $conditionChecker($item)
 			)
 		);
 	}
