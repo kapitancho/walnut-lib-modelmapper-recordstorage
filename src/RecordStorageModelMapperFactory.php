@@ -18,10 +18,10 @@ final class RecordStorageModelMapperFactory implements ModelMapperFactory, Model
 	 * @param ModelParserFactory $modelParserFactory
 	 */
 	public function __construct(
-		private /*readonly*/ RecordStorageModelMapperConfiguration $configuration,
-		private /*readonly*/ ArrayDataAccessorFactory $accessorFactory,
-		private /*readonly*/ ModelBuilderFactory $modelBuilderFactory,
-		private /*readonly*/ ModelParserFactory $modelParserFactory,
+		private readonly RecordStorageModelMapperConfiguration $configuration,
+		private readonly ArrayDataAccessorFactory $accessorFactory,
+		private readonly ModelBuilderFactory $modelBuilderFactory,
+		private readonly ModelParserFactory $modelParserFactory,
 	) {}
 
 	/**

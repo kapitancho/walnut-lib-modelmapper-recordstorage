@@ -19,9 +19,9 @@ final class RecordStorageModelMapper implements ModelMapper, IdentityGenerator {
 	 * @param ModelParser<T> $modelParser
 	 */
 	public function __construct(
-		private /*readonly*/ ArrayDataAccessor $dataAccessor,
-		private /*readonly*/ ModelBuilder $modelBuilder,
-		private /*readonly*/ ModelParser $modelParser
+		private readonly ArrayDataAccessor $dataAccessor,
+		private readonly ModelBuilder $modelBuilder,
+		private readonly ModelParser $modelParser
 	) {}
 
 	/**
